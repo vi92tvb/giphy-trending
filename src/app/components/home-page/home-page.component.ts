@@ -7,9 +7,13 @@ import { GiphyTrendingService } from 'src/app/core/services/giphy/giphy-trending
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  trendingGifs: any; //data
-  currentOffset: number = 0; //offset
-  isLoading: boolean = true;
+  trendingGifs: any; // data
+  currentOffset: number = 0; // offset
+
+  isLoading: boolean = true; // loader
+
+  clickedImage: string = ""; // source of image
+  isOpenModal: boolean = false;
 
   constructor(
     private giphyTrending: GiphyTrendingService
@@ -49,6 +53,16 @@ export class HomePageComponent implements OnInit {
                 }
     )
     this.increaseOffset();
+  }
+
+  onImage(src: string) {
+    console.log(src);
+    this.clickedImage = src;
+    this.isOpenModal = true;
+  }
+
+  onClose() {
+    this.isOpenModal = false;
   }
 
 }

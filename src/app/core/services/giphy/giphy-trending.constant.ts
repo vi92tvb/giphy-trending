@@ -2,7 +2,6 @@ export const API_KEY = 'bMVEb8UCZqAudco44x39x9JhgRxzzEMQ';
 export const LIMIT = 12;
 
 export interface TRENDING_DATA {
-    data: [{
         id: string;
         type: string;
         analytics: {
@@ -15,5 +14,4 @@ export interface TRENDING_DATA {
         }
         image: any
         url: string;
-    }]
 }
