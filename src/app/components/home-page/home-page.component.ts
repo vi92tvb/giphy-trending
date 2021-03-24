@@ -7,29 +7,44 @@ import { GiphyTrendingService } from 'src/app/core/services/giphy/giphy-trending
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  trendingGifs: any;
+  trendingGifs: any; //data
+  currentOffset: number = 0; //offset
+  isFinished: boolean = false; //check if end data
 
   constructor(
     private giphyTrending: GiphyTrendingService
   ) { }
 
-  getTrending(){
-    this.giphyTrending.getTrending()
+  ngOnInit(): void {
+    this.giphyTrending.getTrending(this.currentOffset)
     .subscribe(
       (data: any) => {
         console.log(data);
         this.trendingGifs = data['data'];
-        // this.router.navigateByUrl('/home');
       },
       (err) =>  {
-                  /* this.onLoginFail(); */
+                  console.log(err);
+                }
+    )    
+    this.increaseOffset();
+  }
+
+  increaseOffset() {
+    this.currentOffset = this.currentOffset + 12;
+  }
+
+  onLoadMore() {
+    this.giphyTrending.getTrending(this.currentOffset)
+    .subscribe(
+      (data: any) => {
+        console.log(data);
+        this.trendingGifs = data['data'];
+      },
+      (err) =>  {
                   console.log(err);
                 }
     )
-  }
-
-  ngOnInit(): void {
-    this.getTrending();
+    this.increaseOffset();
   }
 
 }

@@ -10,7 +10,7 @@ export class GiphyTrendingService {
   constructor(private http: HttpClient) { }
 
   // tslint:disable-next-line: typedef
-  getTrending() {
-    return this.http.get(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=${LIMIT}`);
+  getTrending(offset: number) {
+    return this.http.get(`https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=${LIMIT}&offset=${offset}`);
   }
 }
