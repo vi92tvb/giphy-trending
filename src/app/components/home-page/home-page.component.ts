@@ -9,7 +9,7 @@ import { GiphyTrendingService } from 'src/app/core/services/giphy/giphy-trending
 export class HomePageComponent implements OnInit {
   trendingGifs: any; //data
   currentOffset: number = 0; //offset
-  isFinished: boolean = false; //check if end data
+  isLoading: boolean = true;
 
   constructor(
     private giphyTrending: GiphyTrendingService
@@ -19,7 +19,7 @@ export class HomePageComponent implements OnInit {
     this.giphyTrending.getTrending(this.currentOffset)
     .subscribe(
       (data: any) => {
-        console.log(data);
+        this.isLoading = false;
         this.trendingGifs = data['data'];
       },
       (err) =>  {
@@ -34,14 +34,18 @@ export class HomePageComponent implements OnInit {
   }
 
   onLoadMore() {
+    let newData: any= [];
+    this.isLoading = true;
     this.giphyTrending.getTrending(this.currentOffset)
     .subscribe(
       (data: any) => {
-        console.log(data);
-        this.trendingGifs = data['data'];
+        this.isLoading = false;
+        newData = data['data'];
+        this.trendingGifs = [...this.trendingGifs, ...newData]
       },
       (err) =>  {
                   console.log(err);
+                  this.isLoading = false;
                 }
     )
     this.increaseOffset();
