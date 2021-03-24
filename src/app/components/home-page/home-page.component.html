@@ -1,0 +1,28 @@
+<div class="home-page">
+    <h1 class="home-page__title">Giphy Trending</h1>
+
+    <div class="home-page__grid">
+        <div *ngFor="let trendingGif of trendingGifs; index as i">
+            <div class="home-page__grid__card">
+                <img class="home-page__grid__card__image" src="{{trendingGif?.images?.preview_webp?.url}}" (click)="onImage(trendingGif?.images?.original?.url)">
+
+                <div class="home-page__grid__card__title">
+                    {{trendingGif?.title}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-page__load-more-container">
+        <div class="home-page__load-more-container__btn" (click)="onLoadMore()">
+            Load More
+        </div>
+    </div>
+
+    <div id="modal-image" class="home-page__modal" [style.display]="this.isOpenModal ? 'block' : 'none'">
+        <span class="home-page__modal__close" (click)="onClose()">&times;</span>
+        <img class="home-page0__modal__content" src={{this.clickedImage}}>
+    </div>
+</div>
+
+<div class="loader" [style.display]="this.isLoading ? 'block' : 'none'"></div>
