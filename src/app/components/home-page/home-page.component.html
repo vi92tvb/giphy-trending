@@ -1,1 +1,19 @@
-<p>home-page works!</p>
+<div class="home-page">
+    <h1 class="home-page__title">Giphy Trending</h1>
+
+    <div class="home-page__grid">
+        <div *ngFor="let trendingGif of trendingGifs; index as i">
+            <div class="home-page__grid__card">
+                <img class="home-page__grid__card__image" src="{{trendingGif?.images?.preview_webp?.url}}" alt="gif">
+
+                <div class="home-page__grid__card__title">
+                    {{trendingGif?.title}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-page__load-more">
+        Load More
+    </div>
+</div>
