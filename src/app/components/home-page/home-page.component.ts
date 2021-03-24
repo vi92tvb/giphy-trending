@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TRENDING_DATA } from 'src/app/core/services/giphy/giphy-trending.constant';
 import { GiphyTrendingService } from 'src/app/core/services/giphy/giphy-trending.service';
 @Component({
   selector: 'app-home-page',
