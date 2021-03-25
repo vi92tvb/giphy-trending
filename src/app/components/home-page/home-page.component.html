@@ -21,8 +21,9 @@
 
     <div id="modal-image" class="home-page__modal" [style.display]="this.isOpenModal ? 'block' : 'none'">
         <span class="home-page__modal__close" (click)="onClose()">&times;</span>
-        <img class="home-page0__modal__content" src={{this.clickedImage}}>
+        <img class="home-page__modal__content" src={{this.clickedImage}}>
     </div>
 </div>
 
 <div class="loader" [style.display]="this.isLoading ? 'block' : 'none'"></div>
+
